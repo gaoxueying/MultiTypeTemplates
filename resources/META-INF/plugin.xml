@@ -1,7 +1,7 @@
 <idea-plugin version="2">
     <id>>me.drakeet.plugin.multitype</id>
     <name>MultiTypeTemplates</name>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <vendor email="drakeet.me@gmail.com" url="https://drakeet.me">drakeet</vendor>
 
     <description><![CDATA[
@@ -11,7 +11,7 @@
     ]]></description>
 
     <change-notes><![CDATA[
-      * Supported MultiType v2.3.0<br/>
+      * Supported MultiType v2.5.0<br/>
       * Changed the Action to the position after "Create Java Class Action"
     ]]>
     </change-notes>

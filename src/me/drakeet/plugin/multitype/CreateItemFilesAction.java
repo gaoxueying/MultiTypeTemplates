@@ -34,7 +34,7 @@ public class CreateItemFilesAction extends JavaCreateTemplateInPackageAction<Psi
     implements DumbAware {
 
     private static final String ITEM_TEMPLATE_NAME = "Item";
-    private static final String ITEM_VIEW_PROVIDER_TEMPLATE_NAME = "ItemViewProvider";
+    private static final String ITEM_VIEW_PROVIDER_TEMPLATE_NAME = "ItemViewBinder";
 
 
     public CreateItemFilesAction() {
@@ -45,7 +45,7 @@ public class CreateItemFilesAction extends JavaCreateTemplateInPackageAction<Psi
 
     @Override
     protected void buildDialog(final Project project, PsiDirectory directory, CreateFileFromTemplateDialog.Builder builder) {
-        builder.setTitle("Create Item and ItemViewProvider")
+        builder.setTitle("Create Item and ItemViewBinder")
             .addKind("Class", PlatformIcons.CLASS_ICON,
                 JavaTemplateUtil.INTERNAL_CLASS_TEMPLATE_NAME);
 
@@ -97,7 +97,7 @@ public class CreateItemFilesAction extends JavaCreateTemplateInPackageAction<Psi
     protected final PsiClass doCreate(PsiDirectory dir, String className, String templateName)
         throws IncorrectOperationException {
         PsiClass result = JavaDirectoryService.getInstance()
-            .createClass(dir, className + "ViewProvider",
+            .createClass(dir, className + "ViewBinder",
                 ITEM_VIEW_PROVIDER_TEMPLATE_NAME);
         JavaDirectoryService
             .getInstance().createClass(dir, className, ITEM_TEMPLATE_NAME);
