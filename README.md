@@ -29,8 +29,7 @@ public class Category {
 ```
 
 ```java
-public class CategoryViewBinder
-        extends ItemViewBinder<Category, CategoryViewBinder.ViewHolder> {
+public class CategoryViewBinder extends ItemViewBinder<Category, CategoryViewBinder.ViewHolder> {
 
     @NonNull @Override
     protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
