@@ -89,8 +89,14 @@ public class CreateItemFilesAction extends JavaCreateTemplateInPackageAction<Psi
 
     @Override
     protected String getActionName(PsiDirectory directory, String newName, String templateName) {
-        return IdeBundle.message("progress.creating.class", StringUtil.getQualifiedName(
-            JavaDirectoryService.getInstance().getPackage(directory).getQualifiedName(), newName));
+        return IdeBundle.message("progress.creating.class",
+            StringUtil.getQualifiedName(
+                JavaDirectoryService.getInstance().
+                    getPackage(directory).
+                    getQualifiedName(),
+                newName
+            )
+        );
     }
 
 

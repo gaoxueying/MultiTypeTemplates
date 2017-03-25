@@ -7,8 +7,7 @@ import android.view.ViewGroup;
 import me.drakeet.multitype.ItemViewBinder;
 
 #parse("File Header.java")
-public class ${NAME}
-    extends ItemViewBinder<MTI_CLASS, ${NAME}.ViewHolder> {
+public class ${NAME} extends ItemViewBinder<MTI_CLASS, ${NAME}.ViewHolder> {
 
     @NonNull @Override
     protected ViewHolder onCreateViewHolder(
