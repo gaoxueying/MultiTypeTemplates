@@ -4,7 +4,6 @@ import com.google.common.base.CaseFormat;
 import com.intellij.ide.IdeBundle;
 import com.intellij.ide.actions.CreateFileFromTemplateDialog;
 import com.intellij.ide.actions.JavaCreateTemplateInPackageAction;
-import com.intellij.ide.fileTemplates.JavaTemplateUtil;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.project.DumbAware;
@@ -36,6 +35,9 @@ public class CreateItemFilesAction extends JavaCreateTemplateInPackageAction<Psi
     private static final String ITEM_TEMPLATE_NAME = "Item";
     private static final String ITEM_VIEW_PROVIDER_TEMPLATE_NAME = "ItemViewBinder";
 
+    public static final String ITEM_ITEM_AND_VIEW_BINDER = "Item & ItemViewBinder";
+    public static final String ONLY_ITEM_VIEW_BINDER = "Only ItemViewBinder";
+
 
     public CreateItemFilesAction() {
         super("", IdeBundle.message("action.create.new.class.description"),
@@ -46,8 +48,8 @@ public class CreateItemFilesAction extends JavaCreateTemplateInPackageAction<Psi
     @Override
     protected void buildDialog(final Project project, PsiDirectory directory, CreateFileFromTemplateDialog.Builder builder) {
         builder.setTitle("Create Item and ItemViewBinder")
-            .addKind("Class", PlatformIcons.CLASS_ICON,
-                JavaTemplateUtil.INTERNAL_CLASS_TEMPLATE_NAME);
+            .addKind(ITEM_ITEM_AND_VIEW_BINDER, PlatformIcons.CLASS_ICON, ITEM_ITEM_AND_VIEW_BINDER)
+            .addKind(ONLY_ITEM_VIEW_BINDER, PlatformIcons.CLASS_ICON, ONLY_ITEM_VIEW_BINDER);
 
         builder.setValidator(new InputValidatorEx() {
             @Override
@@ -87,26 +89,25 @@ public class CreateItemFilesAction extends JavaCreateTemplateInPackageAction<Psi
     }
 
 
-    @Override
+    @Override @SuppressWarnings("ConstantConditions")
     protected String getActionName(PsiDirectory directory, String newName, String templateName) {
         return IdeBundle.message("progress.creating.class",
             StringUtil.getQualifiedName(
-                JavaDirectoryService.getInstance().
-                    getPackage(directory).
-                    getQualifiedName(),
+                JavaDirectoryService.getInstance().getPackage(directory).getQualifiedName(),
                 newName
             )
         );
     }
 
 
+    @Override
     protected final PsiClass doCreate(PsiDirectory dir, String className, String templateName)
         throws IncorrectOperationException {
-        PsiClass result = JavaDirectoryService.getInstance()
-            .createClass(dir, className + "ViewBinder",
-                ITEM_VIEW_PROVIDER_TEMPLATE_NAME);
-        JavaDirectoryService
-            .getInstance().createClass(dir, className, ITEM_TEMPLATE_NAME);
+        PsiClass result = createClass(dir, className + "ViewBinder", ITEM_VIEW_PROVIDER_TEMPLATE_NAME);
+        if (templateName.equals(ITEM_ITEM_AND_VIEW_BINDER)) {
+            createClass(dir, className, ITEM_TEMPLATE_NAME);
+        }
+
         onProcessItemViewProvider(dir, className, result);
         return result;
     }
@@ -146,5 +147,10 @@ public class CreateItemFilesAction extends JavaCreateTemplateInPackageAction<Psi
         super.postProcess(createdElement, templateName, customProperties);
 
         moveCaretAfterNameIdentifier(createdElement);
+    }
+
+
+    private PsiClass createClass(@NotNull PsiDirectory dir, @NotNull String className, @NotNull String templateName) {
+        return JavaDirectoryService.getInstance().createClass(dir, className, templateName);
     }
 }

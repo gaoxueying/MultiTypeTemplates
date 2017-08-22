@@ -10,8 +10,7 @@ import me.drakeet.multitype.ItemViewBinder;
 public class ${NAME} extends ItemViewBinder<MTI_CLASS, ${NAME}.ViewHolder> {
 
     @NonNull @Override
-    protected ViewHolder onCreateViewHolder(
-        @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View root = inflater.inflate(R.layout.item_MTI_LOWER_NAME, parent, false);
         return new ViewHolder(root);
     }
