@@ -1,18 +1,19 @@
 <idea-plugin>
     <id>>me.drakeet.plugin.multitype</id>
     <name>MultiTypeTemplates</name>
-    <version>1.3.0</version>
+    <version>1.4.0</version>
     <vendor email="drakeet.me@gmail.com" url="https://drakeet.me">drakeet</vendor>
 
     <description><![CDATA[
-      An intellij idea plug to create MultiType Item and ItemViewBinder easily.<br/><br/>
-      P.S. MultiType: An Android library to create multiple item types list views easily and flexibly
+      An intellij idea plug to create and generate MultiType Item and ItemViewBinder easily.<br/><br/>
+      MultiType: An Android library to create multiple item types list views easily and flexibly
       <a href="https://github.com/drakeet/MultiType">https://github.com/drakeet/MultiType</a>
     ]]></description>
 
     <change-notes><![CDATA[
-      * Supported "Item & ItemViewBinder" or "Only ItemViewBinder"(Just input Item name) <br/>
-      * Supported MultiType v3.3.0<br/>
+      <li>Supported generate inner "Item & ItemViewBinder" codes</li>
+      <li>Supported create "Item & ItemViewBinder" or "Only ItemViewBinder" class files</li>
+      <li>Supported MultiType v3.4.0</li>
     ]]>
     </change-notes>
 
