@@ -108,12 +108,12 @@ public class CreateItemFilesAction extends JavaCreateTemplateInPackageAction<Psi
             createClass(dir, className, ITEM_TEMPLATE_NAME);
         }
 
-        onProcessItemViewProvider(dir, className, result);
+        onProcessItemViewBinder(dir, className, result);
         return result;
     }
 
 
-    private void onProcessItemViewProvider(final PsiDirectory dir, final String className, final PsiClass itemClass) {
+    private void onProcessItemViewBinder(final PsiDirectory dir, final String typeName, final PsiClass itemClass) {
         PsiFile file = itemClass.getContainingFile();
         final PsiDocumentManager manager = PsiDocumentManager.getInstance(itemClass.getProject());
         final Document document = manager.getDocument(file);
@@ -122,14 +122,15 @@ public class CreateItemFilesAction extends JavaCreateTemplateInPackageAction<Psi
         }
 
         new WriteCommandAction.Simple(itemClass.getProject()) {
-            @Override protected void run() throws Throwable {
+            @Override
+            protected void run() throws Throwable {
                 manager.doPostponedOperationsAndUnblockDocument(document);
                 document.setText(document.getText()
-                    .replace("MTI_CLASS", className)
+                    .replace("MTI_CLASS", typeName)
                     .replace("MTI_LOWER_NAME",
-                        CaseFormat.UPPER_CAMEL.to(LOWER_UNDERSCORE, className))
+                        CaseFormat.UPPER_CAMEL.to(LOWER_UNDERSCORE, typeName))
                     .replace("MTI_NAME",
-                        CaseFormat.UPPER_CAMEL.to(LOWER_CAMEL, className)));
+                        CaseFormat.UPPER_CAMEL.to(LOWER_CAMEL, typeName)));
                 CodeStyleManager.getInstance(itemClass.getProject()).reformat(itemClass);
             }
         }.execute();

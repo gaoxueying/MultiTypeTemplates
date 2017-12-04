@@ -1,4 +1,4 @@
-<idea-plugin version="4">
+<idea-plugin>
     <id>>me.drakeet.plugin.multitype</id>
     <name>MultiTypeTemplates</name>
     <version>1.3.0</version>
@@ -32,8 +32,15 @@
 
     <actions>
         <action id="CreateItemFileAction" class="me.drakeet.plugin.multitype.CreateItemFilesAction" text="MultiType Item"
-            description="Create an Item class and ItemViewProvider." icon="/fileTypes/javaClass.png">
+            description="Create an Item class and ItemViewBinder." icon="/fileTypes/javaClass.png">
             <add-to-group group-id="NewGroup" relative-to-action="NewFile" anchor="before"/>
+        </action>
+    </actions>
+
+    <actions>
+        <action id="MultiType" class="me.drakeet.plugin.multitype.CreateInnerItemCodesAction" text="_MultiType">
+            <add-to-group group-id="GenerateGroup"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl M"/>
         </action>
     </actions>
 
