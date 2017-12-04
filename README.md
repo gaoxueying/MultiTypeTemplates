@@ -53,7 +53,13 @@ public class CategoryViewBinder extends ItemViewBinder<Category, CategoryViewBin
 }
 ```
 
+### Action
+
+You could generate inner "Item & ItemViewBinder" codes by `MultiType` action: 
+
+![](https://i.loli.net/2017/12/04/5a2554792d299.png) ![](https://i.loli.net/2017/12/04/5a2554792ee80.png)
+
 ### Thanks
 
 - **[drakeet/MultiType](https://github.com/drakeet/MultiType)**
- An Android library to retrofit multiple item view types
+ An Android library to create multiple item types list views easily and flexibly
