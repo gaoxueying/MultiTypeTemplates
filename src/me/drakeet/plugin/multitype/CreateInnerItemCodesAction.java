@@ -13,6 +13,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.WindowManager;
 import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiClass;
+import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementFactory;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiModifierList;
@@ -107,18 +108,17 @@ public class CreateInnerItemCodesAction extends BaseGenerateAction implements Cr
 
 
         private void createItemViewBinderClass() {
-            PsiClass innerBinderClass = factory.createClass(typeName + "ViewBinder");
-            privateStatic(innerBinderClass);
-
-            PsiClass dummyClass = factory.createClassFromText(
-                TEMPLATE
-                    .replace("${NAME}", typeName + "ViewBinder")
-                    .replace("MTI_CLASS", typeName)
-                    .replace("MTI_LOWER_NAME", CaseFormat.UPPER_CAMEL.to(LOWER_UNDERSCORE, typeName))
-                    .replace("MTI_NAME", CaseFormat.UPPER_CAMEL.to(LOWER_CAMEL, typeName)),
-                clazz
+            clazz.add(createInnerClassFromText(BINDER_TEMPLATE
+                .replace("${NAME}", typeName + "ViewBinder")
+                .replace("MTI_CLASS", typeName)
+                .replace("MTI_LOWER_NAME", CaseFormat.UPPER_CAMEL.to(LOWER_UNDERSCORE, typeName))
+                .replace("MTI_NAME", CaseFormat.UPPER_CAMEL.to(LOWER_CAMEL, typeName)), clazz)
             );
-            clazz.add(dummyClass.getInnerClasses()[0]);
+        }
+
+
+        private PsiClass createInnerClassFromText(String text, PsiElement element) {
+            return factory.createClassFromText(text, element).getInnerClasses()[0];
         }
 
 
@@ -130,7 +130,7 @@ public class CreateInnerItemCodesAction extends BaseGenerateAction implements Cr
         }
 
 
-        private final String TEMPLATE =
+        private final String BINDER_TEMPLATE =
             "private static class ${NAME} extends ItemViewBinder<MTI_CLASS, ${NAME}.ViewHolder> {\n" +
                 "\n" +
                 "    @NonNull @Override\n" +

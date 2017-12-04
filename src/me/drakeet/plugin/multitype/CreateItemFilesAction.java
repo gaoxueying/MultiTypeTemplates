@@ -40,8 +40,7 @@ public class CreateItemFilesAction extends JavaCreateTemplateInPackageAction<Psi
 
 
     public CreateItemFilesAction() {
-        super("", IdeBundle.message("action.create.new.class.description"),
-            PlatformIcons.CLASS_ICON, true);
+        super("", IdeBundle.message("action.create.new.class.description"), PlatformIcons.CLASS_ICON, true);
     }
 
 
@@ -127,10 +126,8 @@ public class CreateItemFilesAction extends JavaCreateTemplateInPackageAction<Psi
                 manager.doPostponedOperationsAndUnblockDocument(document);
                 document.setText(document.getText()
                     .replace("MTI_CLASS", typeName)
-                    .replace("MTI_LOWER_NAME",
-                        CaseFormat.UPPER_CAMEL.to(LOWER_UNDERSCORE, typeName))
-                    .replace("MTI_NAME",
-                        CaseFormat.UPPER_CAMEL.to(LOWER_CAMEL, typeName)));
+                    .replace("MTI_LOWER_NAME", CaseFormat.UPPER_CAMEL.to(LOWER_UNDERSCORE, typeName))
+                    .replace("MTI_NAME", CaseFormat.UPPER_CAMEL.to(LOWER_CAMEL, typeName)));
                 CodeStyleManager.getInstance(itemClass.getProject()).reformat(itemClass);
             }
         }.execute();
