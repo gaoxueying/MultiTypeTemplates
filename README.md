@@ -57,7 +57,8 @@ public class CategoryViewBinder extends ItemViewBinder<Category, CategoryViewBin
 
 You could generate inner "Item & ItemViewBinder" codes by `MultiType` action: 
 
-![](https://i.loli.net/2017/12/04/5a2554792d299.png) ![](https://i.loli.net/2017/12/04/5a2554792ee80.png)
+<img src="https://i.loli.net/2017/12/04/5a2554792d299.png" height=240/>
+<img src="https://i.loli.net/2017/12/04/5a2554792ee80.png" height=240/>
 
 ### Thanks
 
