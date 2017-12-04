@@ -50,10 +50,8 @@ public class CreateInnerItemCodesAction extends BaseGenerateAction implements Cr
         if (psiFile == null || editor == null) {
             return;
         }
-        if (dialog == null) {
-            dialog = new CreateInnerCodesDialog();
-            dialog.setOnOKListener(this);
-        }
+        dialog = new CreateInnerCodesDialog();
+        dialog.setOnOKListener(this);
         dialog.setTitle("Generate MultiType Codes");
         dialog.pack();
         dialog.setLocationRelativeTo(WindowManager.getInstance().getFrame(event.getProject()));

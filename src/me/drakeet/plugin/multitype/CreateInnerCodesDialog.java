@@ -18,11 +18,11 @@ public class CreateInnerCodesDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JTextField className;
+    private JTextField typeName;
     private JCheckBox onlyItemViewBinderCheckBox;
 
 
-    public CreateInnerCodesDialog() {
+    CreateInnerCodesDialog() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -30,7 +30,6 @@ public class CreateInnerCodesDialog extends JDialog {
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {onOK();}
         });
-
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {onCancel();}
         });
@@ -70,7 +69,7 @@ public class CreateInnerCodesDialog extends JDialog {
 
     private void onOK() {
         if (onOKListener != null) {
-            onOKListener.onOK(className.getText(), onlyItemViewBinderCheckBox.isSelected());
+            onOKListener.onOK(typeName.getText(), onlyItemViewBinderCheckBox.isSelected());
         }
         dispose();
     }
